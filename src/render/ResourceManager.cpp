@@ -66,8 +66,8 @@ Texture ResourceManager::createTexture(const std::string& name, const std::strin
 	unsigned int tex;
 	glCreateTextures(GL_TEXTURE_2D, 1, &tex);
 
-	glTextureParameteri(tex, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTextureParameteri(tex, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(tex, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(tex, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTextureParameteri(tex, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTextureParameteri(tex, GL_TEXTURE_WRAP_T, GL_REPEAT);
 

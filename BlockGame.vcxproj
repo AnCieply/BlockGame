@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\render\Camera.cpp" />
     <ClCompile Include="extinclude\glm\detail\glm.cpp" />
     <ClCompile Include="src\render\Renderer.cpp" />
     <ClCompile Include="src\render\Mesh.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="src\render\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\render\Camera.h" />
     <ClInclude Include="extinclude\glad\glad.h" />
     <ClInclude Include="extinclude\GLFW\glfw3.h" />
     <ClInclude Include="extinclude\GLFW\glfw3native.h" />
@@ -398,6 +400,8 @@
     <Image Include="res\textures\terrain.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="extinclude\glm\detail\func_common.inl" />
     <None Include="extinclude\glm\detail\func_common_simd.inl" />
     <None Include="extinclude\glm\detail\func_exponential.inl" />
@@ -534,11 +538,15 @@
     <None Include="extinclude\glm\gtx\vector_angle.inl" />
     <None Include="extinclude\glm\gtx\vector_query.inl" />
     <None Include="extinclude\glm\gtx\wrap.inl" />
+    <None Include="README.md" />
     <None Include="res\shaders\basicfrag.glsl" />
     <None Include="res\shaders\basicvertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

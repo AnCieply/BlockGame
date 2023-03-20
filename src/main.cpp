@@ -1,9 +1,11 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <iostream>
 
+#include "render/Camera.h"
 #include "render/Renderer.h"
 #include "render/ResourceManager.h"
 #include "render/Texture.h"
@@ -80,11 +82,16 @@ int main() {
     glDebugMessageCallback(openGLMessageCallback, 0);
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
 
     Renderer* rend = Renderer::getInstance();
 
     Texture testTexture = ResourceManager::createTexture("test", "res/textures/terrain.png");
     Shader testShader = ResourceManager::createShaderProgram("basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
+
+    Camera testCam = Camera(90.0f, 0.01f, 1000.0f, width * 1.0f / height * 1.0f);
+    testCam.setPosition(0, 0, 3.0f);
+    testCam.setOrientation(0, 0, -1);
 
     Mesh testMesh;
     for (int i = 0; i < 6; i++) {
@@ -93,6 +100,8 @@ int main() {
     testMesh.build();
 
     while (!glfwWindowShouldClose(window)) {
+        testShader.setMat4("viewproj", testCam.updateMatrix());
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         rend->render(testMesh, testShader, testTexture);
