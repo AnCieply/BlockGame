@@ -4,16 +4,16 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     Input* input = Input::getInstance();
 
     if (action == GLFW_PRESS) {
-        input->keys[key] = true;
+        input->setKeyStatus(key, true);
     } else if (action == GLFW_RELEASE) {
-        input->keys[key] = false;
+        input->setKeyStatus(key, false);
     }
 }
 
 Input* Input::m_Ptr = nullptr;
 
 Input::Input()
-    : keys{0} {  }
+    : m_Keys{0} {  }
 
 Input* Input::getInstance() {
     if (m_Ptr == nullptr) {
@@ -22,4 +22,12 @@ Input* Input::getInstance() {
     } else {
         return m_Ptr;
     }
+}
+
+void Input::setKeyStatus(int key, bool status) {
+    m_Keys[key] = status;
+}
+
+bool Input::isKeyPressed(int key) {
+    return m_Keys[key];
 }

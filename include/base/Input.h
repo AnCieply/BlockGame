@@ -8,11 +8,15 @@ class Input {
 private:
 	static Input* m_Ptr;
 
+	bool m_Keys[1024];
+
 	Input();
 public:
 	Input(const Input& obj) = delete;
 
 	static Input* getInstance();
 
-	bool keys[1024];
+	void setKeyStatus(int key, bool status);
+	
+	bool isKeyPressed(int key);
 };

@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\base\Input.cpp" />
     <ClCompile Include="src\render\Camera.cpp" />
     <ClCompile Include="extinclude\glm\detail\glm.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="src\render\Shader.cpp" />
     <ClCompile Include="src\render\stb_image.cpp" />
     <ClCompile Include="src\render\Texture.cpp" />
+    <ClCompile Include="src\base\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\render\Camera.h" />
@@ -397,6 +399,8 @@
     <ClInclude Include="include\render\Texture.h" />
     <ClInclude Include="include\render\Renderer.h" />
     <ClInclude Include="include\base\Input.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\base\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\terrain.png" />

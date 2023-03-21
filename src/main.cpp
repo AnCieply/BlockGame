@@ -10,6 +10,7 @@
 #include "render/ResourceManager.h"
 #include "render/Texture.h"
 
+#include "base/Time.h"
 #include "base/Input.h"
 
 static Vertex quadVertices[] = {
@@ -38,9 +39,6 @@ static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
 
 int main() {
     GLFWwindow* window;
-
-    float deltaTime = 0.0f;
-    float lastFrame = 0.0f;
 
     glfwSetErrorCallback(errorCallback);
 
@@ -85,6 +83,7 @@ int main() {
 
     Renderer* rend = Renderer::getInstance();
     Input* inp = Input::getInstance();
+    Time* tm = Time::getInstance();
 
     Texture testTexture = ResourceManager::createTexture("test", "res/textures/terrain.png");
     Shader testShader = ResourceManager::createShaderProgram("basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
@@ -100,11 +99,9 @@ int main() {
     testMesh.build();
 
     while (!glfwWindowShouldClose(window)) {
-        float currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
+        tm->calcDeltaTime();
 
-        if (inp->keys[GLFW_KEY_ESCAPE]) {
+        if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);
         }
 
