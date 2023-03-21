@@ -4,6 +4,7 @@
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+void mousePositionCallback(GLFWwindow* window, double xpos, double ypos);
 
 class Input {
 private:
@@ -11,6 +12,9 @@ private:
 
 	bool m_Keys[1024];
 	bool m_MouseButtons[1024];
+
+	float m_MouseDeltaX;
+	float m_MouseDeltaY;
 
 	Input();
 public:

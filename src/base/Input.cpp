@@ -20,10 +20,17 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     }
 }
 
+void mousePositionCallback(GLFWwindow* window, double xpos, double ypos) {
+    Input* input = Input::getInstance();
+
+
+}
+
 Input* Input::m_Ptr = nullptr;
 
 Input::Input()
-    : m_Keys{0} {  }
+    : m_Keys{0}, m_MouseButtons{0},
+      m_MouseDeltaX{0}, m_MouseDeltaY{0} {  }
 
 Input* Input::getInstance() {
     if (m_Ptr == nullptr) {
