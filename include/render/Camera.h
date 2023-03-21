@@ -8,6 +8,8 @@ private:
 	glm::vec3 m_Orientation;
 	glm::vec3 m_Up;
 
+	glm::vec3 m_Rotation;
+
 	glm::mat4 m_Viewproj;
 
 	float m_FOVd;
@@ -17,6 +19,7 @@ private:
 public:
 	Camera(float fovd, float near, float far, float aspect);
 
+	void rotate(float x, float y, float z);
 	void setPosition(float x, float y, float z);
 	void setOrientation(float x, float y, float z);
 	glm::mat4& updateMatrix();

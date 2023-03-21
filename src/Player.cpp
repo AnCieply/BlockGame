@@ -3,7 +3,7 @@
 #include "base/Time.h"
 
 Player::Player()
-	: m_Position(glm::vec3(0)) {  }
+	: m_Position(glm::vec3(0)), m_Direction(glm::vec3(0, 1, 0)) {  }
 
 void Player::setPosition(float x, float y, float z) {
 	m_Position = glm::vec3(x, y, z);

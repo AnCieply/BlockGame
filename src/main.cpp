@@ -112,6 +112,10 @@ int main() {
         double xPos, yPos;
         glfwGetCursorPos(window, &xPos, &yPos);
         inp->updateMouseDeltas(xPos, yPos);
+
+        if (inp->isMouseButtonPressed(GLFW_MOUSE_BUTTON_1)) {
+            testCam.rotate(-inp->getMouseDeltaY() * 0.25f, -inp->getMouseDeltaX() * 0.25f, 0);
+        } 
           
         if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);

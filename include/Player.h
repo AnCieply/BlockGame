@@ -7,6 +7,7 @@
 class Player {
 private:
 	glm::vec3 m_Position;
+	glm::vec3 m_Direction;
 public:
 	Player();
 
