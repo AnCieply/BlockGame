@@ -96,10 +96,6 @@ int main() {
     Player plyr;
     plyr.setPosition(0, 0, 3);
 
-    Camera testCam = Camera(90.0f, 0.01f, 1000.0f, width * 1.0f / height * 1.0f);
-    testCam.setPosition(0, 0, 3);
-    testCam.setOrientation(0, 0, -1);
-
     Mesh testMesh;
     for (int i = 0; i < 6; i++) {
         testMesh.addVertex(quadVertices[i]);
@@ -114,10 +110,8 @@ int main() {
         inp->updateMouseDeltas(xPos, yPos);
 
         if (inp->isMouseButtonPressed(GLFW_MOUSE_BUTTON_1)) {
-            testCam.rotate(-inp->getMouseDeltaY() * 0.25f, -inp->getMouseDeltaX() * 0.25f, 0);
-        } 
-
-        plyr.m_Direction = testCam.m_Orientation;
+            plyr.rotate(-inp->getMouseDeltaY() * 0.25f, -inp->getMouseDeltaX() * 0.25f);
+        }
           
         if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);
@@ -136,10 +130,8 @@ int main() {
             plyr.move(0.0f, +1.0f, 0.0f);
         if (inp->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
             plyr.move(0.0f, -1.0f, 0.0f);
-        glm::vec3 pPosition = plyr.getPosition();
-        testCam.setPosition(pPosition.x, pPosition.y, pPosition.z);
 
-        testShader.setMat4("viewproj", testCam.updateMatrix());
+        testShader.setMat4("viewproj", plyr.getCamMatrix());
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
