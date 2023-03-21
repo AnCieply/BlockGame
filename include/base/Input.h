@@ -14,7 +14,9 @@ private:
 	bool m_MouseButtons[1024];
 
 	float m_MouseDeltaX;
+	float m_PrevMouseX;
 	float m_MouseDeltaY;
+	float m_PrevMouseY;
 
 	Input();
 public:
@@ -27,4 +29,8 @@ public:
 	
 	bool isKeyPressed(int key);
 	bool isMouseButtonPressed(int button);
+
+	void updateMouseDeltas(float dX, float dY);
+	float getMouseDeltaX();
+	float getMouseDeltaY();
 };

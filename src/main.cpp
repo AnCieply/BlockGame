@@ -62,6 +62,8 @@ int main() {
 
     glfwSetKeyCallback(window, keyCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
+    //glfwSetCursorPosCallback(window, mousePositionCallback);
+
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -103,10 +105,14 @@ int main() {
         testMesh.addVertex(quadVertices[i]);
     }
     testMesh.build();
-
+     
     while (!glfwWindowShouldClose(window)) {
         tm->calcDeltaTime();
-
+        // Update input.
+        double xPos, yPos;
+        glfwGetCursorPos(window, &xPos, &yPos);
+        inp->updateMouseDeltas(xPos, yPos);
+          
         if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);
         }

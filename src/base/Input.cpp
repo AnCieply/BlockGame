@@ -23,7 +23,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
 void mousePositionCallback(GLFWwindow* window, double xpos, double ypos) {
     Input* input = Input::getInstance();
 
-
+    input->updateMouseDeltas(xpos, ypos);
 }
 
 Input* Input::m_Ptr = nullptr;
@@ -55,4 +55,20 @@ bool Input::isKeyPressed(int key) {
 
 bool Input::isMouseButtonPressed(int button) {
     return m_MouseButtons[button];
+}
+
+void Input::updateMouseDeltas(float mouseX, float mouseY) {
+    m_MouseDeltaX = mouseX - m_PrevMouseX;
+    m_MouseDeltaY = mouseY - m_PrevMouseY;
+
+    m_PrevMouseX = mouseX;
+    m_PrevMouseY = mouseY;
+}
+
+float Input::getMouseDeltaX() {
+    return m_MouseDeltaX;
+}
+
+float Input::getMouseDeltaY() {
+    return m_MouseDeltaY;
 }
