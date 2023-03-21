@@ -10,6 +10,16 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     }
 }
 
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+    Input* input = Input::getInstance();
+
+    if (action == GLFW_PRESS) {
+        input->setMouseButtonStatus(button, true);
+    } else if (action == GLFW_RELEASE) {
+        input->setMouseButtonStatus(button, false);
+    }
+}
+
 Input* Input::m_Ptr = nullptr;
 
 Input::Input()
@@ -28,6 +38,14 @@ void Input::setKeyStatus(int key, bool status) {
     m_Keys[key] = status;
 }
 
+void Input::setMouseButtonStatus(int button, bool status) {
+    m_MouseButtons[button] = status;
+}
+
 bool Input::isKeyPressed(int key) {
     return m_Keys[key];
+}
+
+bool Input::isMouseButtonPressed(int button) {
+    return m_MouseButtons[button];
 }
