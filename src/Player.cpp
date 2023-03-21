@@ -9,6 +9,10 @@ void Player::setPosition(float x, float y, float z) {
 	m_Position = glm::vec3(x, y, z);
 }
 
+glm::vec3 Player::getPosition() {
+	return m_Position;
+}
+
 void Player::move(float dX, float dY, float dZ) {
 	Time* tm = Time::getInstance();
 	m_Position.x += (dX * tm->getDeltaTime());

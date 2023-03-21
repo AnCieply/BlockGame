@@ -13,6 +13,8 @@
 #include "base/Time.h"
 #include "base/Input.h"
 
+#include "Player.h"
+
 static Vertex quadVertices[] = {
     { 0.0f, 0.0f, 0.0f, 255, 255, 255, 255, 0, 0 },
     { 1.0f, 0.0f, 0.0f, 255, 255, 255, 255, 65535, 0 },
@@ -88,6 +90,9 @@ int main() {
     Texture testTexture = ResourceManager::createTexture("test", "res/textures/terrain.png");
     Shader testShader = ResourceManager::createShaderProgram("basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
 
+    Player plyr;
+    plyr.setPosition(0, 0, 3);
+
     Camera testCam = Camera(90.0f, 0.01f, 1000.0f, width * 1.0f / height * 1.0f);
     testCam.setPosition(0, 0, 3);
     testCam.setOrientation(0, 0, -1);
@@ -104,6 +109,22 @@ int main() {
         if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);
         }
+
+        // Temporary input.
+        if (inp->isKeyPressed(GLFW_KEY_W))
+            plyr.move(0.0f, 0.0f, -1.0f);
+        if (inp->isKeyPressed(GLFW_KEY_S))
+            plyr.move(0.0f, 0.0f, +1.0f);
+        if (inp->isKeyPressed(GLFW_KEY_A))
+            plyr.move(-1.0f, 0.0f, 0.0f);
+        if (inp->isKeyPressed(GLFW_KEY_D))
+            plyr.move(+1.0f, 0.0f, 0.0f);
+        if (inp->isKeyPressed(GLFW_KEY_SPACE))
+            plyr.move(0.0f, +1.0f, 0.0f);
+        if (inp->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
+            plyr.move(0.0f, -1.0f, 0.0f);
+        glm::vec3 pPosition = plyr.getPosition();
+        testCam.setPosition(pPosition.x, pPosition.y, pPosition.z);
 
         testShader.setMat4("viewproj", testCam.updateMatrix());
 
