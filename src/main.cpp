@@ -116,6 +116,8 @@ int main() {
         if (inp->isMouseButtonPressed(GLFW_MOUSE_BUTTON_1)) {
             testCam.rotate(-inp->getMouseDeltaY() * 0.25f, -inp->getMouseDeltaX() * 0.25f, 0);
         } 
+
+        plyr.m_Direction = testCam.m_Orientation;
           
         if (inp->isKeyPressed(GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, true);

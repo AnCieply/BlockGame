@@ -7,9 +7,11 @@
 class Player {
 private:
 	glm::vec3 m_Position;
-	glm::vec3 m_Direction;
+	
 public:
 	Player();
+
+	glm::vec3 m_Direction;
 
 	void setPosition(float x, float y, float z);
 	glm::vec3 getPosition();

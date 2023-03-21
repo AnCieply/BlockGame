@@ -15,7 +15,10 @@ glm::vec3 Player::getPosition() {
 
 void Player::move(float dX, float dY, float dZ) {
 	Time* tm = Time::getInstance();
-	m_Position.x += (dX * tm->getDeltaTime());
+	glm::vec3 deltaPos(dX, dY, dZ);
+
+	m_Position += (-dZ * tm->getDeltaTime() * m_Direction);
+	m_Position += (dX * tm->getDeltaTime() * glm::normalize(glm::cross(m_Direction, glm::vec3(0, 1, 0))));
+
 	m_Position.y += (dY * tm->getDeltaTime());
-	m_Position.z += (dZ * tm->getDeltaTime());
 }
