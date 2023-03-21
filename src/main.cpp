@@ -10,6 +10,8 @@
 #include "render/ResourceManager.h"
 #include "render/Texture.h"
 
+#include "base/Input.h"
+
 static Vertex quadVertices[] = {
     { 0.0f, 0.0f, 0.0f, 255, 255, 255, 255, 0, 0 },
     { 1.0f, 0.0f, 0.0f, 255, 255, 255, 255, 65535, 0 },
@@ -30,18 +32,15 @@ void errorCallback(int error, const char* description) {
     std::cerr << "GLFW error: " << description << "\n";
 }
 
-static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-    }
-}
-
 static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
 int main() {
     GLFWwindow* window;
+
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
 
     glfwSetErrorCallback(errorCallback);
 
@@ -85,12 +84,13 @@ int main() {
     glEnable(GL_CULL_FACE);
 
     Renderer* rend = Renderer::getInstance();
+    Input* inp = Input::getInstance();
 
     Texture testTexture = ResourceManager::createTexture("test", "res/textures/terrain.png");
     Shader testShader = ResourceManager::createShaderProgram("basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
 
     Camera testCam = Camera(90.0f, 0.01f, 1000.0f, width * 1.0f / height * 1.0f);
-    testCam.setPosition(0, 0, 3.0f);
+    testCam.setPosition(0, 0, 3);
     testCam.setOrientation(0, 0, -1);
 
     Mesh testMesh;
@@ -100,6 +100,14 @@ int main() {
     testMesh.build();
 
     while (!glfwWindowShouldClose(window)) {
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        if (inp->keys[GLFW_KEY_ESCAPE]) {
+            glfwSetWindowShouldClose(window, true);
+        }
+
         testShader.setMat4("viewproj", testCam.updateMatrix());
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

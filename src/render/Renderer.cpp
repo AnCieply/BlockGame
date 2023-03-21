@@ -8,8 +8,7 @@ Renderer* Renderer::getInstance() {
 	if (m_Ptr == nullptr) {
 		m_Ptr = new Renderer();
 		return m_Ptr;
-	}
-	else {
+	} else {
 		return m_Ptr;
 	}
 }

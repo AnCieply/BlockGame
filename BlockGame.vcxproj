@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\base\Input.cpp" />
     <ClCompile Include="src\render\Camera.cpp" />
     <ClCompile Include="extinclude\glm\detail\glm.cpp" />
     <ClCompile Include="src\render\Renderer.cpp" />
@@ -395,6 +396,7 @@
     <ClInclude Include="include\render\Shader.h" />
     <ClInclude Include="include\render\Texture.h" />
     <ClInclude Include="include\render\Renderer.h" />
+    <ClInclude Include="include\base\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\terrain.png" />
