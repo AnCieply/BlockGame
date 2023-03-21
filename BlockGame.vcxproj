@@ -97,7 +97,7 @@
     <ClCompile Include="src\render\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\render\primitive.cpp" />
-    <ClCompile Include="src\render\ResourceManager.cpp" />
+    <ClCompile Include="src\base\ResourceManager.cpp" />
     <ClCompile Include="src\render\Shader.cpp" />
     <ClCompile Include="src\render\stb_image.cpp" />
     <ClCompile Include="src\render\Texture.cpp" />
@@ -394,7 +394,7 @@
     <ClInclude Include="extinclude\stb_image\stb_image.h" />
     <ClInclude Include="include\render\Mesh.h" />
     <ClInclude Include="include\render\primitive.h" />
-    <ClInclude Include="include\render\ResourceManager.h" />
+    <ClInclude Include="include\base\ResourceManager.h" />
     <ClInclude Include="include\render\Shader.h" />
     <ClInclude Include="include\render\Texture.h" />
     <ClInclude Include="include\render\Renderer.h" />

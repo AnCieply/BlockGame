@@ -3,8 +3,8 @@
 #include <iostream>
 #include <map>
 
-#include "Shader.h"
-#include "Texture.h"
+#include "render/Shader.h"
+#include "render/Texture.h"
 
 using ShaderType = unsigned int;
 

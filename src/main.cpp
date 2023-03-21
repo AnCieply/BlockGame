@@ -7,7 +7,7 @@
 
 #include "render/Camera.h"
 #include "render/Renderer.h"
-#include "render/ResourceManager.h"
+#include "base/ResourceManager.h"
 #include "render/Texture.h"
 
 #include "base/Time.h"
