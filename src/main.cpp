@@ -13,15 +13,48 @@
 #include "base/Time.h"
 #include "base/Input.h"
 
+#include "game/Chunk.h"
+
 #include "Player.h"
 
-static Vertex quadVertices[] = {
-    { 0.0f, 0.0f, 0.0f, 255, 255, 255, 255, 0, 0 },
-    { 1.0f, 0.0f, 0.0f, 255, 255, 255, 255, 65535, 0 },
-    { 0.0f, 1.0f, 0.0f, 255, 255, 255, 255, 0, 65535 },
-    { 0.0f, 1.0f, 0.0f, 255, 255, 255, 255, 0, 65535 },
-    { 1.0f, 0.0f, 0.0f, 255, 255, 255, 255, 65535, 0 },
-    { 1.0f, 1.0f, 0.0f, 255, 255, 255, 255, 65535, 65535 }
+static Vertex frontFaceVerts[] = {
+    { 0.0f, 0.0f, 1.0f, 0, 0 },
+    { 1.0f, 0.0f, 1.0f, 65535, 0 },
+    { 0.0f, 1.0f, 1.0f, 0, 65535 },
+    { 0.0f, 1.0f, 1.0f, 0, 65535 },
+    { 1.0f, 0.0f, 1.0f, 65535, 0 },
+    { 1.0f, 1.0f, 1.0f, 65535, 65535 }
+};
+
+static Vertex backFaceVerts[] = {
+    { 1.0f, 0.0f, 0.0f, 0, 0 },
+    { 0.0f, 0.0f, 0.0f, 65535, 0 },
+    { 1.0f, 1.0f, 0.0f, 0, 65535 },
+    { 1.0f, 1.0f, 0.0f, 0, 65535 },
+    { 0.0f, 0.0f, 0.0f, 65535, 0 },
+    { 0.0f, 1.0f, 0.0f, 65535, 65535 }
+};
+
+static Vertex leftFaceVerts[] = {
+    { 0.0f, 0.0f, 0.0f, 0, 0 },
+    { 0.0f, 0.0f, 1.0f, 65535, 0 },
+    { 0.0f, 1.0f, 0.0f, 0, 65535 },
+    { 0.0f, 1.0f, 0.0f, 0, 65535 },
+    { 0.0f, 0.0f, 1.0f, 65535, 0 },
+    { 0.0f, 1.0f, 1.0f, 65535, 65535 }
+};
+
+static Vertex rightFaceVerts[] = {
+    { 1.0f, 0.0f, 1.0f, 0, 0 },
+    { 1.0f, 0.0f, 0.0f, 65535, 0 },
+    { 1.0f, 1.0f, 1.0f, 0, 65535 },
+    { 1.0f, 1.0f, 1.0f, 0, 65535 },
+    { 1.0f, 0.0f, 0.0f, 65535, 0 },
+    { 1.0f, 1.0f, 0.0f, 65535, 65535 },
+};
+
+static Vertex topFaceVerts[] = {
+
 };
 
 void GLAPIENTRY openGLMessageCallback(GLenum source, GLenum type, GLuint id,  GLenum severity,
@@ -52,7 +85,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    window = glfwCreateWindow(640, 480, "Block Game", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 1024, "Block Game", nullptr, nullptr);
     if (!window) {
         std::cerr << "GLFW Error: Failed to create window.\n";
         glfwTerminate();
@@ -62,7 +95,7 @@ int main() {
 
     glfwSetKeyCallback(window, keyCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
-    //glfwSetCursorPosCallback(window, mousePositionCallback);
+    // glfwSetCursorPosCallback(window, mousePositionCallback);
 
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
@@ -85,6 +118,8 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
 
     Renderer* rend = Renderer::getInstance();
     Input* inp = Input::getInstance();
@@ -98,9 +133,20 @@ int main() {
 
     Mesh testMesh;
     for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(quadVertices[i]);
+        testMesh.addVertex(frontFaceVerts[i]);
+    }
+    for (int i = 0; i < 6; i++) {
+        testMesh.addVertex(backFaceVerts[i]);
+    }
+    for (int i = 0; i < 6; i++) {
+        testMesh.addVertex(leftFaceVerts[i]);
+    }
+    for (int i = 0; i < 6; i++) {
+        testMesh.addVertex(rightFaceVerts[i]);
     }
     testMesh.build();
+
+    Chunk testChunk;
      
     while (!glfwWindowShouldClose(window)) {
         tm->calcDeltaTime();

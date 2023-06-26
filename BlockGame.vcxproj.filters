@@ -57,6 +57,9 @@
     <ClCompile Include="src\base\Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\Chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\render\Mesh.h">
@@ -948,6 +951,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\base\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

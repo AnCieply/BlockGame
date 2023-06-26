@@ -1,6 +1,5 @@
 #version 460 core
 
-in vec4 oColor;
 in vec2 oUV;
 
 uniform sampler2D tex;

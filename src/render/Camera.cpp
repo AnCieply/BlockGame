@@ -28,7 +28,6 @@ void Camera::rotate(float x, float y, float z) {
 	m_Direction = glm::rotate(m_Direction, glm::radians(x), normal);
 	// Around y-axis
 	m_Direction = glm::rotate(m_Direction, glm::radians(y), m_Up);
-	// Around z-axis
 }
 
 void Camera::setPosition(float x, float y, float z) {

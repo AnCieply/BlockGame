@@ -10,14 +10,10 @@ void Mesh::build() {
 	glEnableVertexArrayAttrib(m_VAO, 0);
 	glVertexArrayAttribBinding(m_VAO, 0, 0);
 	glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, false, 0);
-	// Color.
+	// UV.
 	glEnableVertexArrayAttrib(m_VAO, 1);
 	glVertexArrayAttribBinding(m_VAO, 1, 0);
-	glVertexArrayAttribFormat(m_VAO, 1, 3, GL_UNSIGNED_BYTE, true, 3 * sizeof(float));
-	// UV.
-	glEnableVertexArrayAttrib(m_VAO, 2);
-	glVertexArrayAttribBinding(m_VAO, 2, 0);
-	glVertexArrayAttribFormat(m_VAO, 2, 2, GL_UNSIGNED_SHORT, true, 3 * sizeof(unsigned char) + 3 * sizeof(float));
+	glVertexArrayAttribFormat(m_VAO, 1, 2, GL_UNSIGNED_SHORT, true, 3 * sizeof(float));
 
 	glVertexArrayVertexBuffer(m_VAO, 0, m_VBO, 0, Vertex::getBytes());
 }
