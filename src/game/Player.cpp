@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "game/Player.h"
 
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>

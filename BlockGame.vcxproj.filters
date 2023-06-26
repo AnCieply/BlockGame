@@ -48,7 +48,7 @@
     <ClCompile Include="src\render\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
+    <ClCompile Include="src\game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\base\Input.cpp">
@@ -58,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -947,13 +950,16 @@
     <ClInclude Include="include\base\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player.h">
+    <ClInclude Include="include\game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\base\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

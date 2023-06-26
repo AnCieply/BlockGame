@@ -88,8 +88,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\Block.cpp" />
     <ClCompile Include="src\game\Chunk.cpp" />
-    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\game\Player.cpp" />
     <ClCompile Include="src\base\Input.cpp" />
     <ClCompile Include="src\render\Camera.cpp" />
     <ClCompile Include="extinclude\glm\detail\glm.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="src\base\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\game\Block.h" />
     <ClInclude Include="include\game\Chunk.h" />
     <ClInclude Include="include\render\Camera.h" />
     <ClInclude Include="extinclude\glad\glad.h" />
@@ -401,7 +403,7 @@
     <ClInclude Include="include\render\Texture.h" />
     <ClInclude Include="include\render\Renderer.h" />
     <ClInclude Include="include\base\Input.h" />
-    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\game\Player.h" />
     <ClInclude Include="include\base\Time.h" />
   </ItemGroup>
   <ItemGroup>

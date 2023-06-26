@@ -7,69 +7,15 @@
 
 #include "render/Camera.h"
 #include "render/Renderer.h"
-#include "base/ResourceManager.h"
 #include "render/Texture.h"
 
+#include "base/ResourceManager.h"
 #include "base/Time.h"
 #include "base/Input.h"
 
 #include "game/Chunk.h"
-
-#include "Player.h"
-
-static Vertex frontFaceVerts[] = {
-    { 0.0f, 0.0f, 1.0f, 0, 0 },
-    { 1.0f, 0.0f, 1.0f, 65535, 0 },
-    { 0.0f, 1.0f, 1.0f, 0, 65535 },
-    { 0.0f, 1.0f, 1.0f, 0, 65535 },
-    { 1.0f, 0.0f, 1.0f, 65535, 0 },
-    { 1.0f, 1.0f, 1.0f, 65535, 65535 }
-};
-
-static Vertex backFaceVerts[] = {
-    { 1.0f, 0.0f, 0.0f, 0, 0 },
-    { 0.0f, 0.0f, 0.0f, 65535, 0 },
-    { 1.0f, 1.0f, 0.0f, 0, 65535 },
-    { 1.0f, 1.0f, 0.0f, 0, 65535 },
-    { 0.0f, 0.0f, 0.0f, 65535, 0 },
-    { 0.0f, 1.0f, 0.0f, 65535, 65535 }
-};
-
-static Vertex leftFaceVerts[] = {
-    { 0.0f, 0.0f, 0.0f, 0, 0 },
-    { 0.0f, 0.0f, 1.0f, 65535, 0 },
-    { 0.0f, 1.0f, 0.0f, 0, 65535 },
-    { 0.0f, 1.0f, 0.0f, 0, 65535 },
-    { 0.0f, 0.0f, 1.0f, 65535, 0 },
-    { 0.0f, 1.0f, 1.0f, 65535, 65535 }
-};
-
-static Vertex rightFaceVerts[] = {
-    { 1.0f, 0.0f, 1.0f, 0, 0 },
-    { 1.0f, 0.0f, 0.0f, 65535, 0 },
-    { 1.0f, 1.0f, 1.0f, 0, 65535 },
-    { 1.0f, 1.0f, 1.0f, 0, 65535 },
-    { 1.0f, 0.0f, 0.0f, 65535, 0 },
-    { 1.0f, 1.0f, 0.0f, 65535, 65535 }
-};
-
-static Vertex bottomFaceVerts[] = {
-    { 0.0f, 0.0f, 0.0f, 0, 0 },
-    { 1.0f, 0.0f, 0.0f, 65535, 0 },
-    { 0.0f, 0.0f, 1.0f, 0, 65535 },
-    { 0.0f, 0.0f, 1.0f, 0, 65535 },
-    { 1.0f, 0.0f, 0.0f, 65535, 0 },
-    { 1.0f, 0.0f, 1.0f, 65535, 65535 }
-};
-
-static Vertex topFaceVerts[] = {
-    { 1.0f, 1.0f, 0.0f, 0, 0 },
-    { 0.0f, 1.0f, 0.0f, 65535, 0 },
-    { 1.0f, 1.0f, 1.0f, 0, 65535 },
-    { 1.0f, 1.0f, 1.0f, 0, 65535 },
-    { 0.0f, 1.0f, 0.0f, 65535, 0 },
-    { 0.0f, 1.0f, 1.0f, 65535, 65535 }
-};
+#include "game/Player.h"
+#include "game/Block.h"
 
 void GLAPIENTRY openGLMessageCallback(GLenum source, GLenum type, GLuint id,  GLenum severity,
     GLsizei length, const GLchar* message, const void* userParam) {
@@ -147,22 +93,9 @@ int main() {
 
     Mesh testMesh;
     for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(frontFaceVerts[i]);
-    }
-    for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(backFaceVerts[i]);
-    }
-    for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(leftFaceVerts[i]);
-    }
-    for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(rightFaceVerts[i]);
-    }
-    for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(bottomFaceVerts[i]);
-    }
-    for (int i = 0; i < 6; i++) {
-        testMesh.addVertex(topFaceVerts[i]);
+        for (int j = 0; j < 6; j++) {
+            testMesh.addVertex(blockVerts[i][j]);
+        }
     }
     testMesh.build();
 
