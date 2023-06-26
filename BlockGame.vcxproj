@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\base\Coordinate.cpp" />
     <ClCompile Include="src\game\Block.cpp" />
     <ClCompile Include="src\game\Chunk.cpp" />
     <ClCompile Include="src\game\Player.cpp" />
@@ -106,6 +107,7 @@
     <ClCompile Include="src\base\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\base\Coordinate.h" />
     <ClInclude Include="include\game\Block.h" />
     <ClInclude Include="include\game\Chunk.h" />
     <ClInclude Include="include\render\Camera.h" />

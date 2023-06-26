@@ -85,21 +85,14 @@ int main() {
     Input* inp = Input::getInstance();
     Time* tm = Time::getInstance();
 
-    Texture testTexture = ResourceManager::createTexture("test", "res/textures/terrain.png");
-    Shader testShader = ResourceManager::createShaderProgram("basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
+    Texture chunkMapTexture = ResourceManager::createTexture("ChunkMap", "res/textures/terrain.png");
+    Shader basicShader = ResourceManager::createShaderProgram("Basic", "res/shaders/basicvertex.glsl", "res/shaders/basicfrag.glsl");
 
     Player plyr;
     plyr.setPosition(0, 0, 3);
 
-    Mesh testMesh;
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
-            testMesh.addVertex(blockVerts[i][j]);
-        }
-    }
-    testMesh.build();
-
     Chunk testChunk;
+    testChunk.generate();
      
     while (!glfwWindowShouldClose(window)) {
         tm->calcDeltaTime();
@@ -130,11 +123,11 @@ int main() {
         if (inp->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
             plyr.move(0.0f, -1.0f, 0.0f);
 
-        testShader.setMat4("viewproj", plyr.getCamMatrix());
+        basicShader.setMat4("viewproj", plyr.getCamMatrix());
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        rend->render(testMesh, testShader, testTexture);
+        // rend->render(testMesh, basicShader, chunkMapTexture);
 
         glfwSwapBuffers(window);
 
