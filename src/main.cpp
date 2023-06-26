@@ -50,11 +50,25 @@ static Vertex rightFaceVerts[] = {
     { 1.0f, 1.0f, 1.0f, 0, 65535 },
     { 1.0f, 1.0f, 1.0f, 0, 65535 },
     { 1.0f, 0.0f, 0.0f, 65535, 0 },
-    { 1.0f, 1.0f, 0.0f, 65535, 65535 },
+    { 1.0f, 1.0f, 0.0f, 65535, 65535 }
+};
+
+static Vertex bottomFaceVerts[] = {
+    { 0.0f, 0.0f, 0.0f, 0, 0 },
+    { 1.0f, 0.0f, 0.0f, 65535, 0 },
+    { 0.0f, 0.0f, 1.0f, 0, 65535 },
+    { 0.0f, 0.0f, 1.0f, 0, 65535 },
+    { 1.0f, 0.0f, 0.0f, 65535, 0 },
+    { 1.0f, 0.0f, 1.0f, 65535, 65535 }
 };
 
 static Vertex topFaceVerts[] = {
-
+    { 1.0f, 1.0f, 0.0f, 0, 0 },
+    { 0.0f, 1.0f, 0.0f, 65535, 0 },
+    { 1.0f, 1.0f, 1.0f, 0, 65535 },
+    { 1.0f, 1.0f, 1.0f, 0, 65535 },
+    { 0.0f, 1.0f, 0.0f, 65535, 0 },
+    { 0.0f, 1.0f, 1.0f, 65535, 65535 }
 };
 
 void GLAPIENTRY openGLMessageCallback(GLenum source, GLenum type, GLuint id,  GLenum severity,
@@ -85,7 +99,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    window = glfwCreateWindow(1280, 1024, "Block Game", nullptr, nullptr);
+    window = glfwCreateWindow(640, 480, "Block Game", nullptr, nullptr);
     if (!window) {
         std::cerr << "GLFW Error: Failed to create window.\n";
         glfwTerminate();
@@ -143,6 +157,12 @@ int main() {
     }
     for (int i = 0; i < 6; i++) {
         testMesh.addVertex(rightFaceVerts[i]);
+    }
+    for (int i = 0; i < 6; i++) {
+        testMesh.addVertex(bottomFaceVerts[i]);
+    }
+    for (int i = 0; i < 6; i++) {
+        testMesh.addVertex(topFaceVerts[i]);
     }
     testMesh.build();
 
